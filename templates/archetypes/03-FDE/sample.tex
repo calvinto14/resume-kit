@@ -1,0 +1,170 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10.9pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+% STYLE SAMPLE. Not a real person and not for submission.
+% Reworded from a private resume so the cadence and outcomes stay.
+% Name, contact, employers, school, and hobbies are placeholders.
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape Jordan Hale} \\ \vspace{1pt}
+    \small 555-010-0142 $|$ \href{mailto:jordan.hale@example.com}{\underline{jordan.hale@example.com}} $|$
+    {\href{https://www.linkedin.com/in/sample-resume/}{\underline{linkedin.com/in/sample-resume/}}}
+\end{center}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\textbf{Northline Systems}}{March 2023 -- Present}
+      {Senior Software Engineer (Full-Stack)}{Remote, US}
+      \resumeItemListStart
+        \resumeItem{\textbf{Designed and built a greenfield workflow service (Go, REST APIs, PostgreSQL, Kubernetes)} for multi-step customer migrations, leading two engineers inside a cross-functional squad to take migration time from hours to minutes, cut manual effort by 40\%, and protect \textbf{\$1.7B} in annual revenue.}
+        \resumeItem{Identified a validation gap that blocked customer migration testing and built a \textbf{Python FastAPI engine} a JVM service calls over \textbf{gRPC (Protocol Buffers)} to generate synthetic datasets on the live import path, comparing legacy and cloud runs at cell level and unblocking consultants who were waiting on restricted datasets.}
+        \resumeItem{Identified a visibility gap in cloud migrations and built \textbf{Java/JVM ETL observability (Spring Boot, Azure)} for the ingestion service that replaces legacy analytics assets, with reporting and node-level reads across 1,000+ daily transforms and \textbf{35\%} fewer customer-reported migration issues.}
+        \resumeItem{Ran technical discovery with customers and internal users to draw out requirements and the pains underneath them, then shipped the changes that made migration workflows easier and more predictable for consultants and admins.}
+        \resumeItem{\textbf{Engineered CLI tools (Go, REST APIs)} against the migration services so customers and engineers could run bulk operations, automated checks, and troubleshooting on their own, which reduced reliance on manual steps and support escalations.}
+        \resumeItem{Presented \textbf{technical deep dives and stakeholder demos} to settle requirements early and turn a dense system into language a buyer could use, which lifted customer satisfaction and cut post-delivery change requests by \textbf{40\%}.}
+        \resumeItem{\textbf{Established monitoring with Prometheus, Grafana, and OpenSearch on Kubernetes} to watch latency, throughput, and failures on APIs and background jobs, cutting time spent debugging by \textbf{30\%} and keeping the system reliable under load.}
+        \resumeItem{Built and rolled out a \textbf{multi-agent quality gate} for React changes, combining testing, scouting, code-review, and accessibility agents with custom skills so bad assumptions in generated code surface before merge, and typical review rounds fell from 2 to 3 down to \textbf{roughly 1}.}
+        \resumeItem{Identified the costliest migration-code failures from quarterly field surveys and built a \textbf{Python and React eval harness (RAG, LangGraph, MCP)} that grades rewritten programs against legacy output, cutting a large share of the manual repair work consultants did in legacy customer environments.}
+        \resumeItem{\textbf{Architected and built web applications (React, JavaScript, TypeScript)} by modernizing legacy screens for speed and UX, adding interfaces in front of microservices, and exposing shared endpoints, which improved accessibility and day-to-day work for other developers on the platform.}
+        \resumeItem{Authored \textbf{technical design documents}, drove architecture reviews and the calls that came out of them, coordinated the people who had to sign off, and owned the systems those reviews covered, which raised throughput and made delivery more predictable.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {\textbf{Helio Devices}}{June 2022 -- December 2022}
+      {Applications Engineering Intern}{Austin, TX}
+      \resumeItemListStart
+        \resumeItem{Built spreadsheet models in \textbf{Python and R} that set device simulations next to lab measurements, found where they diverged, and recommended the model changes that made those tools more accurate for the people using them.}
+        \resumeItem{Wrote technical documentation and training and taught it to both technical and non-technical groups, cutting time spent on application troubleshooting by \textbf{30\%}.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}, itemsep=-2pt ]
+    \small{
+    \item \textbf{Languages:} Python, Go (Golang), Java, SQL (PostgreSQL), TypeScript, JavaScript, HTML/CSS
+    \item \textbf{Frameworks/Libraries:} REST APIs, FastAPI, gRPC, Protocol Buffers, React (TypeScript/JavaScript), AI Agents, MCP, RAG, LangGraph, GitHub Copilot, Cursor, pandas, Distributed Systems, ETL, Apache Spark, Kafka, Spring Boot, Node.js, Jest
+    \item \textbf{Cloud/DevOps \& Practices:} Azure, AWS, Kubernetes, Docker, Virtual Machines, CI/CD, GitHub Actions, TDD, Observability, Workflow Orchestration
+    \item \textbf{Interests:} Ceramics, trail running, chess, and home cooking
+    }
+\end{itemize}
+
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Human-Computer Interaction course}}{October 2022 -- December 2022}
+          \resumeItemListStart
+            \resumeItem{Redesigned a \textbf{checkout flow} for a class project through user research and rapid prototypes, clearing the pains that cut checkout errors by \textbf{50\%} and improved conversion.}
+          \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Western State University}{Denver, CO}
+      {Bachelor of Science in Computer Engineering}{}
+  \resumeSubHeadingListEnd
+
+\end{document}

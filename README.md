@@ -2,7 +2,7 @@
 
 This folder is a resume tailoring system with an empty profile. It runs in Claude Code, Cursor, or any other coding agent that can read the repo and run commands. The instructions live in `AGENTS.md` and `CLAUDE.md`, not in one product's skill folder.
 
-Clone it, open the folder in Claude Code or Cursor, and say "set me up." Have your current resume ready to paste. The agent uses that resume as the facts, then rewrites it into the one-page shape in this repo. After the interview, paste a job description and say "tailor this."
+Clone it, open the folder in Claude Code or Cursor, and say "set me up." Have your current resume ready to paste. The agent uses that resume as the facts. `templates/archetypes/*/sample.pdf` shows what a finished page sounds like. After the interview, paste a job description and say "tailor this."
 
 ## What you need installed
 

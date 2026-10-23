@@ -1,12 +1,14 @@
 # Archetype patterns
 
-These four files are the page shape for each role family. They were taken from a finished one-page resume and emptied. Brackets are the only things that change from person to person.
+Each folder has two files.
 
-| File | What leads |
-|------|------------|
-| `01-SWE/pattern.tex` | The system they built |
-| `02-SWE-Adjacent/pattern.tex` | A demo, then discovery, then the build that made it real |
-| `03-FDE/pattern.tex` | The thing they shipped for someone waiting on it |
-| `04-GTM-Engineer/pattern.tex` | Enablement and delivery, then the engineering under it |
+`pattern.tex` is the empty shape. Brackets are filled only from the person's own resume and interview.
 
-Setup reads the person's own resume, checks each story in the interview, and fills a bracket only when that story is theirs. A bracket with no story is deleted. The words inside the brackets are not facts.
+`sample.tex` and `sample.pdf` are a finished page in the same voice: one sentence, stack in the first bold span, outcome in the second, same section order. The name, contact, employers, school, and hobbies on that page are placeholders. The work stories are there so the tone is audible. Do not copy those stories, numbers, or tools onto someone unless their own resume already contains that work.
+
+| Folder | What the sample leads with |
+|--------|----------------------------|
+| `01-SWE` | The workflow service they built |
+| `02-SWE-Adjacent` | A demo, then discovery, then the build |
+| `03-FDE` | The service, then the testing unblock |
+| `04-GTM-Engineer` | The eval harness and the delivery work |

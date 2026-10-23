@@ -4,7 +4,7 @@ The person brings their own resume. You interview them until every claim is one 
 
 Do not tailor a job description in this step. Ask one round per turn. Wait for the answer.
 
-Their resume is raw material. The archetype files are empty patterns. Neither file's wording gets copied onto the page unless the interview confirmed that fact.
+Read `templates/archetypes/*/sample.pdf` when you need to hear a finished page. Do not copy its name, employers, metrics, or stories onto this person. Their resume and the interview are the only source of facts.
 
 ## Start
 
