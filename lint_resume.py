@@ -40,7 +40,7 @@ TECH_KEYWORDS = {
     "kubernetes", "aws", "azure", "docker", "ci", "cd", "tdd", "llm", "llms",
     "kafka", "postgresql", "postgres", "typescript", "javascript", "html",
     "css", "linux", "jenkins", "github", "spring", "grafana", "prometheus",
-    "openapi", "yaml", "cli", "ux", "ui", "saas", "sas", "mosfet", "pandas",
+    "openapi", "yaml", "cli", "ux", "ui", "saas", "pandas",
     "jvm", "discovery", "monitoring", "grpc", "protobuf", "etl", "orchestration",
 }
 
