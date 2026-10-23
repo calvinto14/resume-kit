@@ -17,4 +17,4 @@ Software engineer, individual contributor. Cold-send this ordering when the job 
 
 ## After setup
 
-`/setup` reorders approved bullets into `Resume.tex` here. Tailoring copies this file only as a starting order, then rewrites from `experience.md` for the specific job.
+`/setup` fills `templates/archetypes/01-SWE/pattern.tex` from the person's own resume and writes `Resume.tex` here. Tailoring copies this file only as a starting order, then rewrites from `experience.md` for the specific job.

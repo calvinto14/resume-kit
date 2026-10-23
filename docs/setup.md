@@ -1,16 +1,30 @@
 # Setup
 
-Interview the person who owns this repo, then write their source files. Do not tailor a job description in this step. Ask one round per turn. Wait for the answer.
+The person brings their own resume. You interview them until every claim is one they would say out loud, then you rewrite it in `STYLE.md` using `templates/archetypes/` for shape and order.
 
-The wording of every bullet follows `STYLE.md`. Do not copy that file's fake examples into their resume.
+Do not tailor a job description in this step. Ask one round per turn. Wait for the answer.
+
+Their resume is raw material. The archetype files are empty patterns. Neither file's wording gets copied onto the page unless the interview confirmed that fact.
 
 ## Start
 
 1. Run `python doctor.py`.
-2. Read `candidate_profile.json` and `experience.md`.
+2. Read `candidate_profile.json`, `experience.md`, `STYLE.md`, and `templates/README.md`.
 3. If `setup_complete` is already true, ask which part to update. Do not overwrite files until they say so.
 
+## Round 0 — their resume
+
+Ask them to paste their current resume or drop the file at `inputs/resume.md` (PDF text pasted into that file is fine). `inputs/` is gitignored so the original resume is not pushed.
+
+Read the whole thing. Extract employers, titles, dates, locations, bullets, skills, projects, school, and contact details. Note anything that looks like a team result stated as a personal one, a metric with no source, or a skill that never appears in a story.
+
+Show a short inventory: roles, and one line per story. Ask which stories are real and which should come off. Do not rewrite the PDF yet.
+
+If they have no resume, skip to round 1 and build the inventory from the interview only.
+
 ## Round 1 — identity
+
+Confirm what the resume already has. Ask only for what is missing or wrong.
 
 - Full name, as it should appear on the resume
 - Phone, email, LinkedIn URL
@@ -21,7 +35,7 @@ Do not put a city in the contact line.
 
 ## Round 2 — jobs and school
 
-For each job: employer, title, city and region for that job line, start `YYYY-MM`, end `YYYY-MM` or present, and whether it counts toward years of relevant experience.
+Read dates back from their resume. Correct anything they dispute. For each job: employer, title, city and region for that job line, start `YYYY-MM`, end `YYYY-MM` or present, and whether it counts toward years of relevant experience.
 
 Then education: school, degree, location, dates if they want them.
 
@@ -29,7 +43,7 @@ Read the list back. Ask them to correct dates before the next round.
 
 ## Round 3 — stories
 
-For each relevant job, ask them to walk through work they could defend in an interview. Take several turns if needed. For each story capture:
+Walk their resume bullets one at a time. For each one, ask what they personally did, what the team did, and whether the number is something they can defend. Take several turns if needed. Capture:
 
 - What they built or did
 - Stack, in their words
@@ -57,7 +71,9 @@ Aim for enough material to fill one page: about 8–12 bullets for the main role
 
 ## Write, only after they confirm the story list
 
-Draft every bullet in the voice of `STYLE.md`: one sentence, gap or build, stack inside the first bold span, outcome in the second. Show them the sentence. If they would not say it out loud, rewrite it from their words.
+Draft every bullet in the voice of `STYLE.md`. Use `templates/archetypes/01-SWE/pattern.tex` and the other three pattern files for clause order, bold placement, and which story type leads each archetype. Fill a bracket only from their resume plus this interview. If they have no story for a bracket, delete that bullet. Do not keep a bracket, and do not borrow a tool or metric from the pattern.
+
+Show them each sentence. If they would not say it out loud, rewrite it from their words.
 
 1. `candidate_profile.json` with `setup_complete: true`, `full_name`, `resume_basename` (the name, no `.tex`), header, employment, education, certs, voice, and work authorization.
 2. `experience.md`:
@@ -66,7 +82,7 @@ Draft every bullet in the voice of `STYLE.md`: one sentence, gap or build, stack
    - `## Claim limits` including every "do not claim" from round 5.
    - `## 1.` onward, one section per story, with the approved bullet sentence and the interview note under it.
 3. `resumeSource.tex`: the bullet library, one `\resumeItem` per approved bullet. It may run past one page.
-4. Root `<resume_basename>.tex` and the four baseline copies. Same bullets, different order, following each `BaselineResumes/*/notes.md`. Rename files if the basename changed, and delete the old `Resume.tex` copies.
+4. Root `<resume_basename>.tex` and the four baseline copies. Same approved bullets, different order. Follow `BaselineResumes/*/notes.md` and the matching `templates/archetypes/*/pattern.tex`. Rename files if the basename changed, and delete the old `Resume.tex` copies. Leave the pattern files untouched.
 5. `python compile_snapshot.py`
 6. `pdflatex` twice on the root resume and each baseline. `python lint_resume.py` on each live resume file. Delete `.aux`, `.log`, `.out`.
 7. If the page is short, go back to round 3 for another real story. If it is two pages, cut the weakest approved bullet and rebuild.
@@ -79,4 +95,4 @@ Show them the PDF path and the claim limits. The next step is to paste a job des
 - Never suggest a plausible percentage, revenue number, or customer count.
 - Never upgrade "studied" or "used once" into production experience.
 - Never copy another person's resume into this repo.
-- A reset copies `templates/` over the live files only after they explicitly confirm.
+- A reset copies `templates/candidate_profile.json`, `templates/experience.md`, and `templates/resume.tex` back over the live files only after they explicitly confirm. Do not copy `templates/archetypes/` onto the live resume.

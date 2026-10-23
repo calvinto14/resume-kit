@@ -15,4 +15,4 @@ Technical go-to-market, applications engineering, partnerships, or implementatio
 
 ## After setup
 
-`/setup` reorders approved bullets. If the honest story is mostly product engineering, say so in the notes when a posting is a pure revenue-operations seat, and treat that application as a reach.
+`/setup` fills `templates/archetypes/04-GTM-Engineer/pattern.tex` from the person's own resume. If the honest story is mostly product engineering, say so when a posting is a pure revenue-operations seat, and treat that application as a reach.

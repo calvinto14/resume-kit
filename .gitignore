@@ -29,6 +29,10 @@ snapshot.json
 # Tailored application packets (local only)
 Generated/
 
+# The person's original resume (local only)
+inputs/*
+!inputs/README.md
+
 # JD queue (local in-flight; do not commit raw JDs)
 inbox/*.md
 !inbox/README.md

@@ -19,4 +19,4 @@ Read the first six bullets. If they are mostly demos, decks, or enablement, this
 
 ## After setup
 
-`/setup` reorders approved bullets. Thin customer-facing proof means this baseline stays honest and short on that theme, not padded.
+`/setup` fills `templates/archetypes/03-FDE/pattern.tex` from the person's own resume. Thin customer-facing proof stays short, not padded.

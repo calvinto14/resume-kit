@@ -8,8 +8,8 @@ Python and `pdflatex` do the mechanical checks. You do the interview, the fit la
 
 | When | Read |
 |------|------|
-| Always, before a bullet, intro, or note | `STYLE.md` |
-| First run, or `doctor.py` is not ready | `docs/setup.md` |
+| Always, before a bullet, intro, or note | `STYLE.md` and `templates/archetypes/` |
+| First run, or `doctor.py` is not ready | `docs/setup.md`. Their resume, if they have one, goes in `inputs/` |
 | A job description | `docs/tailor.md`, then `triage/classify_prompt.md` and, after a tailor, `triage/judge_prompt.md` |
 | Intro, LinkedIn, or recruiter questions | `docs/voice.md` |
 

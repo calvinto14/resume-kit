@@ -1,0 +1,172 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10.9pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  PATTERN ONLY. NOT A REAL RESUME.  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Shape, bolding, and section order for this archetype.
+% Replace every [bracket] from the person's own resume and interview, or cut the bullet.
+% Do not invent a tool, employer, or metric to fill a bracket.
+% Do not copy this file into BaselineResumes/ or Generated/.
+
+
+\begin{document}
+
+\begin{center}
+    \textbf{\Huge \scshape [Full Name]} \\ \vspace{1pt}
+    \small [phone] $|$ \href{mailto:[email]}{\underline{[email]}} $|$
+    {\href{[LinkedIn URL]}{\underline{[linkedin.com/in/handle]}}}
+\end{center}
+
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\textbf{[Current employer]}}{[Start] -- Present}
+      {[Title, no language list]}{[Remote or City, ST]}
+      \resumeItemListStart
+        \resumeItem{Identified the top [field or user] problems in [how they learned them] and built a \textbf{[language] [harness] ([the AI or test stack they used])} that [grades or checks the output], [what manual work decreased].}
+        \resumeItem{Presented \textbf{technical deep dives and stakeholder demos} to align on requirements early and translate [the system] into [the business concept], improving [satisfaction or adoption] and cutting [late change requests] by \textbf{[metric]}.}
+        \resumeItem{Partnered with [the functions actually in the room] to translate [their requirements] into [the delivery system], making [the work] more predictable for [who operates it].}
+        \resumeItem{Identified a [validation or testing] gap blocking [who was stuck] and built a \textbf{[language] [service]} that [the other system] calls over \textbf{[contract, such as an API]} to [produce the missing input], [how the two sides were compared], and [who could move forward].}
+        \resumeItem{Architected an \textbf{end-to-end [agent or automation] pipeline} using \textbf{[the tool or protocol]} ([the systems it touched]) that took work from [requirements or design] through [implementation] to [release], then [who adopted it], [what got faster or cleaner].}
+        \resumeItem{Built and rolled out a \textbf{multi-agent quality gate} for [the workflow], combining [the checks the agents actually run] to surface [the bad assumption] before merge and cutting [review rounds or defects] from [before] to \textbf{[after, with roughly if recalled]}.}
+        \resumeItem{\textbf{Engineered CLI tools ([language], [API style])} against [the backend service], enabling [who] to [bulk action, check, or troubleshoot] without [the manual path or escalation].}
+        \resumeItem{\textbf{Designed and built a [greenfield service] ([language], [API style], [datastore], [runtime])} for [the multi-step job it does], [team scope only if they led it], [time or effort change], and [business outcome they can defend].}
+        \resumeItem{Identified a visibility gap in [the workflow] and built \textbf{[language] [observability or reporting] ([framework], [cloud])} for [the service], providing [what someone can now see] and reducing [the failure they named] by \textbf{[metric]}.}
+        \resumeItem{\textbf{Architected and built web applications ([UI language], [JavaScript if that story used it], [typed language if it used one])} including [the legacy surface they modernized], [the interface in front of a service], and [a shared endpoint], improving [accessibility or developer experience they can name].}
+        \resumeItem{Authored \textbf{[design docs or the decision record]}, drove the design review, coordinated the people who had to agree, and owned [the systems], improving [throughput or predictability they actually saw].}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {\textbf{[Earlier employer]}}{[Start] -- [End]}
+      {[Earlier title]}{[City, ST]}
+      \resumeItemListStart
+        \resumeItem{[Compared two sources of truth] using \textbf{[tools]} to find [the discrepancy], then recommended [the change] that improved [the tool or decision].}
+        \resumeItem{[Wrote documentation or training] for technical and non-technical audiences, reducing [the repeated support problem] by \textbf{[metric, or cut this clause]}.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}, itemsep=-2pt ]
+    \small{
+    \item \textbf{Languages:} [primary language], [next languages they can defend]
+    \item \textbf{Frameworks/Libraries:} [API or framework the story uses], [rest, JD words first when tailoring]. If they use React with both languages, write React (TypeScript/JavaScript).
+    \item \textbf{Cloud/DevOps:} [cloud the work actually used], [runtime, CI, observability]
+    \item \textbf{Interests:} [specific hobbies, one line, or delete this line]
+    }
+\end{itemize}
+
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{[Project name]}}{[dates]}
+          \resumeItemListStart
+            \resumeItem{[What they built or redesigned] through [how they learned the problem], [concrete outcome]. Label a class project as a class project.}
+          \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {[School]}{[City, ST]}
+      {[Degree]}{}
+  \resumeSubHeadingListEnd
+
+\end{document}

@@ -16,4 +16,4 @@ Solutions engineer, solutions architect, sales engineer, or a solutions-shaped f
 
 ## After setup
 
-`/setup` reorders the same approved bullets. It does not write new ones.
+`/setup` fills `templates/archetypes/02-SWE-Adjacent/pattern.tex` from the person's own resume. It does not write stories they do not have.

@@ -2,7 +2,7 @@
 
 This folder is a resume tailoring system with an empty profile. It runs in Claude Code, Cursor, or any other coding agent that can read the repo and run commands. The instructions live in `AGENTS.md` and `CLAUDE.md`, not in one product's skill folder.
 
-Clone it, open the folder in Claude Code or Cursor, and say "set me up." After the interview, paste a job description and say "tailor this."
+Clone it, open the folder in Claude Code or Cursor, and say "set me up." Have your current resume ready to paste. The agent uses that resume as the facts, then rewrites it into the one-page shape in this repo. After the interview, paste a job description and say "tailor this."
 
 ## What you need installed
 
@@ -20,7 +20,7 @@ Until setup finishes, that command exits 1. That is expected.
 
 ## First session
 
-Say "set me up." `/setup` means the same thing.
+Say "set me up" and paste your current resume, or drop it at `inputs/resume.md`. `/setup` means the same thing. The interview checks what you would actually say. It does not paste your old bullets through unchanged, and it does not fill gaps from the sample patterns.
 
 The interview is one topic at a time:
 

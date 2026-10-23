@@ -2,7 +2,7 @@
 
 This is the writing voice for every resume, intro, and note this kit produces. It is a style, not a biography. Examples use fake employers and round numbers to show rhythm. Never copy an example's company, product, tool, or metric onto the person unless `experience.md` already contains it.
 
-Read this before writing a sentence that lands on a PDF or in a spoken intro.
+Read this before writing a sentence that lands on a PDF or in a spoken intro. For page shape, bold placement, and which story leads each role family, also read `templates/archetypes/`. Those files are patterns with empty brackets. They are not a person's experience.
 
 ## Resume bullets
 
