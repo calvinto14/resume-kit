@@ -1,0 +1,33 @@
+---
+description: One full page whenever a live resume .tex is edited or generated.
+globs: "**/*.tex"
+alwaysApply: false
+---
+
+# Resume LaTeX — one full page
+
+Applies to the live resume named in `candidate_profile.json` (`resume_basename`), including copies under `Generated/` and `BaselineResumes/`. `resumeSource.tex` is the library and may be longer. `templates/resume.tex` is the blank.
+
+## Layout
+
+- Header: name, phone, email, LinkedIn. No city.
+- Experience, then Skills, then Projects, then Education.
+- Skills: 3–4 lines.
+- Most recent relevant role: about 8–12 bullets once there is enough approved material. Earlier roles: 1–2 bullets. Projects: 1–2. Education: 1 entry.
+- Density target is a full page. The last text baseline on a full page lands near 46pt. Lint fails above 110pt of empty space at the bottom.
+
+If the page is short, add a distinct approved story or lengthen a short bullet from `experience.md`. If there are not enough real stories, ask the person. Do not pad.
+
+If the page spills to two pages, shorten the longest bullets, then cut the lowest-priority story, then compress earlier roles. Do not drop the story the job description most needs until last.
+
+## Build
+
+1. `pdflatex` twice in the file's directory.
+2. The log must say 1 page.
+3. `python lint_resume.py "<tex>"`. For the live basename, lint also measures the PDF.
+4. Report the `PAGE FILL` line.
+5. Delete `.aux`, `.log`, and `.out`.
+
+## Sources
+
+Pull new wording only from `experience.md` and `resumeSource.tex`.

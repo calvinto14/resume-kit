@@ -1,0 +1,24 @@
+{
+  "setup_complete": false,
+  "full_name": "",
+  "resume_basename": "Resume",
+  "experience_file": "experience.md",
+  "header": {
+    "phone": "",
+    "email": "",
+    "linkedin": ""
+  },
+  "work_authorization_ok": null,
+  "ignore_location": true,
+  "location_note": "Default: do not treat JD city, onsite, hybrid, relocation, commute, or timezone as knockouts, skip reasons, or candidacy-grade factors. The header still has no city. A job line may name the city where that work happened.",
+  "certifications": [],
+  "certifications_pursuing": [],
+  "studied_skills": [],
+  "years_experience": {
+    "stated_years": null,
+    "note": "Triage uses years_math.py on employment dates. Do not invent tenure. stated_years is how the person introduces themselves and must not exceed the date math."
+  },
+  "employment": [],
+  "education": [],
+  "voice": ""
+}

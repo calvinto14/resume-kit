@@ -1,0 +1,110 @@
+---
+description: End-to-end workflow for triaging and tailoring a resume to a new job description. Fires on any conversation that involves resume tailoring.
+globs:
+alwaysApply: true
+---
+
+# Resume triage + tailoring workflow
+
+This rule governs every request to tailor a resume ("new JD", "tailor this", `/tailor`).
+
+**Flow:** `JD(s) → ingest queue/<slug> → triage gates → verdict line → baseline|tailor <slug> → from queue/<slug>/jd.md → clear that slug`
+
+If `candidate_profile.json` has `setup_complete` false, stop and run the **setup** skill. Do not tailor the placeholder.
+
+## Approved sources
+
+| File | Purpose |
+|------|---------|
+| `JobDescription.md` | Paste buffer. Ingested on `/tailor`. |
+| `inbox/*.md` | Batch drop, named `Company-Role.md`. |
+| `queue/<slug>/jd.md` | Pinned JD. Phase 1 reads this. |
+| `queue/<slug>/pin.json` | Slot metadata |
+| `queue/<slug>/triage_input.json` | Classification for that slot |
+| `experience.md` | Approved stories, lexicon, claim limits |
+| `resumeSource.tex` | Bullet library |
+| `<resume_basename>.tex` | Base resume and density benchmark. Basename comes from `candidate_profile.json`. |
+| `BaselineResumes/*/notes.md` and the matching `.tex` | Ordering by role family |
+| `Patterns/tailoring-lessons.md` | Principles, plus a log appended after each tailor |
+| `candidate_profile.json` | Dates, certs, work auth, name, resume filename |
+| `triage/classify_prompt.md` | Classify prompt |
+| `triage/decision_overrides.md` | Human choice ≠ script suggestion |
+
+## Model routing
+
+| Tier | Model | Task slug | Responsibility |
+|------|-------|-----------|----------------|
+| Fast judgment | Gemini 3.8 Flash | `gemini-3.8-flash-high` | Phase 0a classify; Phase 1c iteration-2 judge |
+| Critique judgment | GPT-5.6 Sol | `gpt-5.6-sol-medium` | Phase 1c iteration-1 judge |
+| Voice | Claude Sonnet 5 | `claude-sonnet-5-thinking-high` | Phase 1a tailor, and the voice skills |
+| Judgment+ | Claude Opus 5 | `claude-opus-5-thinking-high` | Borderline re-judge; contested 02 vs 03 only |
+| Mechanical | Composer 2.5 Fast | `composer-2.5-fast` | `.tex` after bullets are locked; lint fixes; apply `auto_fix_plan` |
+| Deterministic | scripts | — | Years, knockout, score, queue, snapshot, lint, PDF |
+
+`grok-4.7-high-fast` may substitute for classify or judge when the primary slug is unavailable or the parent chat is already that model. Never use a fast coding model to finalize `has | adjacent | missing` or a grade. Never downgrade Phase 1a to save time.
+
+Judgment may run inline when the parent is already that model or stronger. Otherwise launch a Task with the slug.
+
+## Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `years_math.py` | Relevant years from employment dates |
+| `knockout_check.py` | Years floor, work auth, required certs |
+| `score_requirements.py` | has/adjacent/missing → skip/baseline/tailor |
+| `run_triage.py` | Runs the gates and prints the verdict line |
+| `jd_queue.py` | Ingest, list, pin, verify, decide, clear. Max **5** slots. |
+| `lint_resume.py` | One sentence, section order, bold skim, optional `--jd` lexicon check, page fill |
+| `log_override.py` | Log a human override |
+| `compile_snapshot.py` | Builds `snapshot.json` for classify and tailor |
+| `doctor.py` | Environment and setup check |
+
+## Phase 0
+
+1. `python jd_queue.py ingest --paste --move` then `python jd_queue.py list --json`.
+2. Cap: 3 recommended, 5 max in flight. Classify only slots with `needs_classify: true`.
+3. `python compile_snapshot.py`. Classify each new slot from `triage/classify_prompt.md` into `queue/<slug>/triage_input.json`. Then `python jd_queue.py relabel <slug>`.
+4. `python run_triage.py queue/<slug>/triage_input.json`.
+5. Show one line per slug: `PASS`, `BASELINE`, or `FAIL`, plus archetype, counts, and years or the knockout. Do not render the long evidence card.
+6. PASS is at least 85% required fit and no knockout. 55–85% is BASELINE. Knockout or under 55% is FAIL.
+7. Ask: `baseline <slug>` or `tailor <slug>`. Clear every FAIL unless the user promotes it.
+8. Do not write `Generated/` until the user says **tailor**, unless they said "tailor and proceed" in the same message.
+9. On skip or baseline: `python jd_queue.py decide <slug> skip|baseline` then `python jd_queue.py clear <slug>`. Recommend the archetype path. Do not generate a PDF unless they ask.
+10. If the human choice ≠ `suggested_action`, run `log_override.py`.
+
+Run a borderline Opus re-judge only if the user asks about that slug.
+
+## Phase 1
+
+Only after `tailor`.
+
+1. `python jd_queue.py decide <slug> tailor` then `python jd_queue.py verify <slug>`.
+2. Tailor from `use_for_tailoring`. If `JobDescription.md` differs, say so and keep the queued JD.
+3. Pick `01-SWE`, `02-SWE-Adjacent`, `03-FDE`, or `04-GTM-Engineer`. Read that baseline `.tex` and `notes.md`.
+4. Record strategy: `lateral`, `step-up`, `pivot`, or `reach`.
+5. Reorder approved bullets. Skills are 3–4 lines, job-description words first, truthful.
+6. Lexicon: if `experience.md` maps a JD token as `has`, echo it in Skills and the proof bullet.
+7. Bold skim: at most two `\textbf` spans (three only if one is a metric). Prefer JD-named tools and the impact metric.
+8. Write `Generated/<Role>/<resume_basename>.tex`. `python lint_resume.py "<tex>" --jd queue/<slug>/jd.md`. `pdflatex` twice. Lint again. Exit 0 requires one page and a last text baseline at or below 110pt. Report the `PAGE FILL` line.
+9. Delete `.aux`, `.log`, `.out`.
+10. Judge with `triage/judge_prompt.md`. Write `judge_report.json` and `judge_report.md`. If `should_auto_fix` is true, apply the plan from approved sources only, rebuild, and run one final judge. No second auto-fix.
+11. Write `notes.md`. Append a terse lesson to `Patterns/tailoring-lessons.md`. `python jd_queue.py clear <slug>`.
+12. Never auto-submit an application.
+
+A baseline decision copies the archetype `.tex` into `Generated/<Role>/`, builds the PDF, and lints. No judge.
+
+## Wording
+
+- Header is phone, email, LinkedIn. No city.
+- Obey `ignore_location` on the profile. Work authorization can still knock out.
+- One bullet, one story. Personal contribution only.
+- No fabrication. Claim limits in `experience.md` win.
+- Swap the pattern, not the domain.
+- "AI agents" needs a scope. Test-driven development is human-led.
+- No language list beside the job title.
+- Section order is Experience, then Skills, then Projects, then Education.
+- Projects need a number or an outcome, or they come off the page.
+
+## Application answers
+
+When writing a free-text answer on an application form: one paragraph per question, no em dashes, and the person's voice. Dense, no padding.

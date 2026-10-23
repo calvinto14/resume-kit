@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# LaTeX build artifacts (keep .tex and .pdf)
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Windows shortcuts
+*.lnk
+
+# Rebuilt by compile_snapshot.py
+snapshot.json
+
+# Tailored application packets (local only)
+Generated/
+
+# JD queue (local in-flight; do not commit raw JDs)
+inbox/*.md
+!inbox/README.md
+queue/*/
+JobDescription.md
+

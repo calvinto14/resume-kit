@@ -1,0 +1,49 @@
+{
+  "jd": {
+    "title": "Example Role",
+    "company": "Example Co"
+  },
+  "generated_path": "Generated/Example Role/Resume.tex",
+  "iteration": 1,
+  "mode": "judge_and_plan",
+  "packaging_grade": "C+",
+  "candidacy_grade": "C+",
+  "overall_verdict": "packaging under-sells / reach candidacy",
+  "should_auto_fix": true,
+  "eye_flow": {
+    "six_second_skim": "fail",
+    "named_languages": "fail",
+    "lexicon_echo": "fail",
+    "sa_skim_or_fde_texture": "n/a",
+    "notes": "JD token present only in Skills"
+  },
+  "working": [
+    "One approved story is on the page and matches a required theme"
+  ],
+  "findings": [
+    {
+      "kind": "fixable_packaging",
+      "severity": "high",
+      "jd_signal": "token the JD names",
+      "issue": "Token is Skills-only",
+      "evidence": "experience.md lexicon maps it as has",
+      "fix": "Echo the token in the proof bullet"
+    },
+    {
+      "kind": "unfixable_gap",
+      "severity": "high",
+      "jd_signal": "years floor above profile",
+      "issue": "Date math is below the required years",
+      "evidence": "candidate_profile.json",
+      "fix": null
+    }
+  ],
+  "auto_fix_plan": [
+    {
+      "priority": 1,
+      "action": "Echo the mapped token in the proof bullet",
+      "source": "experience.md lexicon"
+    }
+  ],
+  "notes_for_human": "Packaging can move. Candidacy does not move when the gap is years or a missing tool."
+}

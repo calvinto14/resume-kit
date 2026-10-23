@@ -1,0 +1,60 @@
+{
+  "jd": {
+    "title": "Example Role",
+    "company": "Example Co",
+    "link": ""
+  },
+  "years_required": 5,
+  "years_level": "required",
+  "required_floor_ratio": 0.7,
+  "knockout": {
+    "work_authorization_ok": true,
+    "certifications_required": [],
+    "certifications_held": [],
+    "other_knockouts": []
+  },
+  "criteria": [
+    {
+      "requirement": "Must: example required skill, quoted from the JD",
+      "level": "required",
+      "status": "has",
+      "evidence": "experience.md §1"
+    },
+    {
+      "requirement": "Preferred: example adjacent skill",
+      "level": "preferred",
+      "status": "adjacent",
+      "evidence": "experience.md related story, not the same tool"
+    },
+    {
+      "requirement": "Must: example missing skill",
+      "level": "required",
+      "status": "missing",
+      "evidence": "Not in approved sources"
+    }
+  ],
+  "lexicon_map": [
+    {
+      "jd_token": "REST",
+      "status": "has",
+      "source_proof": "experience.md lexicon",
+      "echo_in": "Skills and the proof bullet"
+    },
+    {
+      "jd_token": "example-missing-tool",
+      "status": "missing",
+      "source_proof": null,
+      "echo_in": null
+    }
+  ],
+  "bullet_map": [
+    {
+      "jd_priority": "highest JD theme",
+      "proof_bullet": "closest approved bullet",
+      "source": "experience.md §1"
+    }
+  ],
+  "archetype_hint": "01-SWE",
+  "strategy_hint": "lateral",
+  "notes_for_card": "One line on fit."
+}
