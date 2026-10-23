@@ -9,6 +9,6 @@ alwaysApply: false
 If this file is a job description (not `inbox/README.md`) and the user is adding or editing it:
 
 1. If `candidate_profile.json` has `setup_complete` false, stop and run `/setup`.
-2. Otherwise run the tailor skill Phase 0: `python3 jd_queue.py ingest --move` (inbox only, unless they asked to use `JobDescription.md`).
+2. Otherwise follow `docs/tailor.md` Phase 0: `python3 jd_queue.py ingest --move` (inbox only, unless they asked to use `JobDescription.md`).
 3. Classify new `queue/<slug>/` slots from `snapshot.json`, run `run_triage.py`, show the verdict line, then stop unless they already said tailor.
 4. Ingest moves the file out of `inbox/` on purpose. Finished roles are cleared from `queue/`, not copied back.

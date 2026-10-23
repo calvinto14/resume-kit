@@ -24,7 +24,7 @@ python jd_queue.py clear <slug>
 ## Typical workflow
 
 1. Paste a JD into `JobDescription.md` **or** drop up to 5 files in `inbox/`
-2. `/tailor` → `compile_snapshot.py` → Gemini 3.8 Flash classifies each new slot from `snapshot.json` → scripts score/pin → one verdict line per slot (`PASS` / `BASELINE` / `FAIL`)
+2. Ask to tailor → `compile_snapshot.py` → the current agent classifies each new slot from `snapshot.json` using `triage/classify_prompt.md` → scripts score and pin → one verdict line per slot (`PASS` / `BASELINE` / `FAIL`)
 3. Reply `tailor <slug>`, `skip <slug>`, or `baseline <slug>` (bare `tailor` is ok if only one slot)
 4. Phase 1 uses `queue/<slug>/jd.md`
 5. After PDF build → **Phase 1c judge** → optional one auto-fix → final grade report → `jd_queue.py clear <slug>`
@@ -32,22 +32,18 @@ python jd_queue.py clear <slug>
 
 Caps: **3 recommended, 5 max** in flight. PASS keepers run in parallel. Each writes `lesson.md`. Append lessons once after the batch. After `pdflatex`, `lint_resume.py` must pass the page-fill gate (1 page, last baseline ≤110pt).
 
-## Model routing
+## Who does what
+
+The agent in the current session does the judgment. The scripts do the math. No specific model product is required.
 
 | Step | Who |
 |------|-----|
-| Criteria extract + `has/adjacent/missing` | Gemini 3.8 Flash (`gemini-3.8-flash-high`) via `classify_prompt.md` — one Task per new slug |
+| Criteria extract + `has/adjacent/missing` | Current agent, `triage/classify_prompt.md` |
 | Years / knockout / score / pin | Scripts (`run_triage.py`, `jd_queue.py`) |
-| Borderline re-judge when score flags escalate | Claude Opus 5 (`claude-opus-5-thinking-high`) — that slug only |
-| Evidence card formatting | Parent (scored JSON → template). No Task. |
-| Notes scaffolding, `.tex` typing, lint fixes | Composer 2.5 Fast (`composer-2.5-fast`) |
-| Human ≠ suggested action | `python log_override.py … --slot <slug>` → `decision_overrides.md` |
-| Post-tailor JD ↔ resume judge (iteration 1) | GPT-5.6 Sol (`gpt-5.6-sol-medium`) via `judge_prompt.md` → `Generated/<Role>/judge_report.{json,md}` |
-| Apply fixable packaging plan (no new claims) | Composer 2.5 Fast + lint/pdflatex; max one fix cycle |
-| Final judge (iteration 2) | `gemini-3.8-flash-high` or parent — not Opus |
-| Phase 1a tailor voice (not a triage step) | Claude Sonnet 5 (`claude-sonnet-5-thinking-high`) — never downgraded |
-
-Approved substitute for classify or judge: `grok-4.7-high-fast`. Never `composer-2.5-fast`, `muse-spark-1.3-high`, or `claude-fable-5-1-thinking-high` for labels or grades.
+| Bullet wording | Current agent, `STYLE.md` |
+| Page count, bold count, lexicon lint | `lint_resume.py` and `pdflatex` |
+| Post-tailor judge, then one optional fix and a second judge | Current agent, `triage/judge_prompt.md` |
+| Human ≠ suggested action | `python log_override.py … --slot <slug>` |
 
 ## Judge outputs
 

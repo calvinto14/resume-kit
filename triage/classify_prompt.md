@@ -1,6 +1,6 @@
-# Triage classification prompt (fast judgment)
+# Triage classification prompt
 
-Default Task slug: `gemini-3.8-flash-high`. Approved substitute: `grok-4.7-high-fast`. Borderline re-judge only: Claude Opus 5 (`claude-opus-5-thinking-high`). Never `composer-2.5-fast` or `claude-fable-5-1-thinking-high` for this step.
+Do this in the current session. Any capable model may run it. Do not stop because a particular product or model name is unavailable.
 
 **Calibration:** bias toward `missing`. A generous `has` inflates the tailor that follows. If you cannot point at a file and section, the label is `missing`.
 
@@ -88,7 +88,7 @@ Archetypes:
 
 ## Borderline re-judge
 
-If the task says `rejudge_borderline`, only re-classify the listed criteria. Prefer `missing` unless the evidence is explicit.
+If the person asks you to re-check a borderline slug, only re-classify the listed criteria. Prefer `missing` unless the evidence is explicit. A second model is optional.
 
 ## Done
 

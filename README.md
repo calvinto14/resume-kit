@@ -1,14 +1,14 @@
 # Resume kit
 
-This folder is a resume tailoring system with an empty profile. Open it in Cursor, say `/setup`, and answer the interview. After that, paste a job description and say `/tailor`.
+This folder is a resume tailoring system with an empty profile. It runs in Claude Code, Cursor, or any other coding agent that can read the repo and run commands. The instructions live in `AGENTS.md` and `CLAUDE.md`, not in one product's skill folder.
 
-Your personal resume repo is a different folder. This one does not contain that experience, and setup does not read it.
+Clone it, open the folder in Claude Code or Cursor, and say "set me up." After the interview, paste a job description and say "tailor this."
 
 ## What you need installed
 
 - Python 3.9 or newer
 - A TeX install that provides `pdflatex` (MacTeX on macOS, TeX Live elsewhere)
-- Cursor, with this folder opened as the workspace
+- An agent that can edit files and run `python` and `pdflatex` in this folder. Claude Code reads `CLAUDE.md` on its own. Cursor reads `AGENTS.md` through the project rule.
 
 No pip packages. Check readiness with:
 
@@ -20,7 +20,7 @@ Until setup finishes, that command exits 1. That is expected.
 
 ## First session
 
-Say `/setup`.
+Say "set me up." `/setup` means the same thing.
 
 The interview is one topic at a time:
 
@@ -36,7 +36,7 @@ Have dates and a short list of projects ready. If you do not know a number, say 
 
 ## After setup
 
-Paste one job description into `JobDescription.md`, or drop up to five `Company-Role.md` files in `inbox/`. Say `/tailor`.
+Paste one job description into `JobDescription.md`, or drop up to five `Company-Role.md` files in `inbox/`. Say "tailor this." `/tailor` means the same thing. In Claude Code, say that you added the file. Cursor can notice an inbox drop on its own.
 
 You get a one-line fit verdict per role and a choice: `baseline <slug>` or `tailor <slug>`. Tailor writes `Generated/<Role>/` with a one-page PDF, notes, and a judge report that separates how the page reads from whether you are a fit.
 
@@ -50,7 +50,7 @@ Other commands, after setup:
 
 ## How the system is shaped
 
-The process is fixed. The content is yours.
+The process is fixed. The writing voice is fixed too: `STYLE.md` is how bullets, intros, and notes are supposed to sound. The employers, dates, and metrics are yours. Setup will not copy the examples in that file onto your resume.
 
 - `jd_queue.py` keeps each job description in its own slot (five at a time).
 - A classify step labels requirements `has`, `adjacent`, or `missing` against `experience.md`.

@@ -1,6 +1,6 @@
-# Post-tailor judge prompt (critique judgment)
+# Post-tailor judge prompt
 
-Default Task slug: `gpt-5.6-sol-medium`. If that slug is unavailable: `grok-4.7-high-fast`, then the parent. Never skip this step. Iteration 2 (`final_report_only`) runs on `gemini-3.8-flash-high` or the parent. Do not spend Opus on either iteration. Never use a fast coding model to set the grade.
+Do this in the current session after the PDF exists. Any capable model may run it. Never skip this step because a particular product or model name is unavailable. A second pass after an auto-fix is still required. Do not raise the grade by inventing experience.
 
 **Calibration:** grade inflation makes this step worthless. A lenient packaging grade with `should_auto_fix: false` launders a weak resume. Every finding quotes a resume line or a JD span. If you cannot cite it, drop it.
 
@@ -30,6 +30,7 @@ Letter scale: A / A- / B+ / B / B- / C+ / C / C- / D / F.
 - Do not tank packaging because years or a missing tool are absent. Those are unfixable.
 - If `ignore_location` is true, location does not change candidacy and is not an unfixable gap.
 - If the JD names a token the lexicon maps as `has`, packaging cannot be A or A- when that token is missing or Skills-only.
+- Grade against `STYLE.md`. A stack-only bullet, a missing outcome, a filler bold, a weak opener, or an em dash is fixable packaging. Do not treat the fake examples in `STYLE.md` as approved experience.
 
 ## Findings
 

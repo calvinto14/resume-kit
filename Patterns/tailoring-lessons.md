@@ -1,6 +1,6 @@
 # Tailoring lessons
 
-Read the principles on every tailor. Append a short log entry after each completed tailor. Do not invent a claim to satisfy a lesson.
+Read `STYLE.md` and the principles below on every tailor. `STYLE.md` is the voice. Append a short log entry after each completed tailor. Do not invent a claim to satisfy a lesson.
 
 ## Principles
 
